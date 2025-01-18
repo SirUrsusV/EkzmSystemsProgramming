@@ -95,4 +95,19 @@ namespace EkzSystemsProgramming
 
 		}
 	}
+
+    public struct ForbiddenKeyCombination
+	{
+		List<string> KeyCombination;
+		bool СaseSensitive;
+    }
+    public struct SettingsMonitoring
+	{
+		public string PathLogs;
+		public double TimeBetweenLogging;
+		public bool ProcessLogging;
+		public bool KeyLogging;
+        public List<string> ListNameCensurProcess;
+        public List<ForbiddenKeyCombination> ListKeyboardShortcut;
+    }
 }
