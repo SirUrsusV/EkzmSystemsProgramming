@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Style="{StaticResource typeBt}" Height="50" Width="500" Grid.Row="0" Content="Старт"/>
+        <Button Style="{StaticResource typeBt}" Height="50" Width="500" Grid.Row="1" Content="Настройки"/>
+        <Button Style="{StaticResource typeBt}" Height="50" Width="500" Grid.Row="2" Content="Открыть папку с логами"/>
+
     </Grid>
 </Window>

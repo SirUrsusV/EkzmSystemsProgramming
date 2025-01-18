@@ -23,7 +23,6 @@ namespace EkzSystemsProgramming
 		public MainWindow()
 		{
 			InitializeComponent();
-			MessageBox.Show("Hello world");
 		}
 	}
 }
