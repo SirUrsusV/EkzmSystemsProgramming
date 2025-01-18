@@ -17,9 +17,9 @@ namespace EkzSystemsProgramming
     /// <summary>
     /// Логика взаимодействия для Settings.xaml
     /// </summary>
-    public partial class Settings : Window
+    public partial class SettingsWindow : Window
     {
-        public Settings()
+        public SettingsWindow()
         {
             InitializeComponent();
         }

@@ -86,7 +86,8 @@ namespace EkzSystemsProgramming
 
 		private void Settings_Click(object sender, RoutedEventArgs e)
 		{
-
+			SettingsWindow settingsWindow = new SettingsWindow();
+			settingsWindow.Show();
 		}
 
 		private void OpenFolderLogs_Click(object sender, RoutedEventArgs e)
