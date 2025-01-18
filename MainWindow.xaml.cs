@@ -24,5 +24,20 @@ namespace EkzSystemsProgramming
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OpenFolderLogs_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }
