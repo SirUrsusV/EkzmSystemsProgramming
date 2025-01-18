@@ -20,24 +20,78 @@ namespace EkzSystemsProgramming
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		enum StatusWorking
+		{
+			Working,
+			DontWorking
+		}
+
+		private StatusWorking _working;
+
+		private StatusWorking Working
+		{
+			get
+			{ 
+				return _working; 
+			}
+			set 
+			{
+                switch (value)
+                {
+                    case StatusWorking.Working:
+						Start();
+                        Title = _name + ": работает";
+                        _working = StatusWorking.Working;
+                        break;
+                    case StatusWorking.DontWorking:
+						Stop();
+                        Title = _name + ": в ожидании";
+                        _working = StatusWorking.DontWorking;
+                        break;
+                }
+            }
+		}
+
+		string _name;
 		public MainWindow()
 		{
 			InitializeComponent();
+            _name = "Монитроринг рабочего времени";
+            Working = StatusWorking.DontWorking;
+
 		}
 
-        private void Start_Click(object sender, RoutedEventArgs e)
-        {
+		private void Start_Click(object sender, RoutedEventArgs e)
+		{
+			switch(_working)
+			{
+				case StatusWorking.DontWorking:
+					_startBt.Content = "Стоп";
+                    Working = StatusWorking.Working;
+					break;
+				case StatusWorking.Working:
+					_startBt.Content = "Страт";
+                    Working = StatusWorking.DontWorking;
+					break;
+			}
+		}
+		private void Start()
+		{
 
-        }
+		}
+		private void Stop()
+		{
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
+		}
 
-        }
+		private void Settings_Click(object sender, RoutedEventArgs e)
+		{
 
-        private void OpenFolderLogs_Click(object sender, RoutedEventArgs e)
-        {
+		}
 
-        }
-    }
+		private void OpenFolderLogs_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }
