@@ -60,6 +60,11 @@ namespace EkzSystemsProgramming
         string _processName = "Совершенно точно не подозрительный процесс";
         public MainWindow()
 		{
+
+			MessageBoxResult messageBoxResult = MessageBox.Show("Данный комплекс программ отслеживает запущенные процессы и содержит кейлоггер. Продолжить использование продукта?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+			if (messageBoxResult == MessageBoxResult.No)
+				this.Close();
+
 			InitializeComponent();
 			SetSettings();
 			_name = "Монитроринг рабочего времени";
@@ -95,7 +100,7 @@ namespace EkzSystemsProgramming
 		private void Start()
 		{
 			string logFilePath = "monitoring.log";
-			int saveIntervalSeconds = 60;
+			int saveIntervalSeconds = 5;
 
             // Проверяем, запущен ли процесс
             Process[] existingProcess = Process.GetProcessesByName(_processName);
