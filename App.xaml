@@ -31,9 +31,9 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="LightGray"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" TargetName="border" Value="LightGray"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="LightGray"/>
-                                <Setter Property="Foreground" Value="LightGray"/>
+                                <Setter Property="Background" TargetName="border" Value="red"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="red"/>
+                                <Setter Property="Foreground" Value="Black"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
