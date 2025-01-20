@@ -20,9 +20,8 @@ namespace Совершенно_точно_не_подозрительный_пр
         {
             //_logFilePath = args[0];
             //_saveIntervalSeconds = int.Parse(args[1]);
-
-            _logFilePath = "C:\\Users\\Artur\\source\\repos\\EkzSystemsProgramming\\bin\\Debug\\";
-            _saveIntervalSeconds = 1;
+            _logFilePath = Directory.GetCurrentDirectory();
+            _saveIntervalSeconds = 10;
 
             Thread monitoringThread = new Thread(ProcessMonitoring);
             monitoringThread.IsBackground = true;
@@ -83,7 +82,7 @@ namespace Совершенно_точно_не_подозрительный_пр
                     fileName = fileName.Replace('.', '-');
                     fileName = fileName.Replace(':', '-');
 
-                    using (StreamWriter writer = new StreamWriter(filePath + fileName + " Log monitoring" + ".txt", true))
+                    using (StreamWriter writer = new StreamWriter(filePath + "\\" + fileName + " Log monitoring" + ".txt", true))
                     {
                         writer.WriteLine("Активные процессы:");
                         foreach (var process in processes)

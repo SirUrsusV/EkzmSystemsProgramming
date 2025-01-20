@@ -58,15 +58,24 @@ namespace EkzSystemsProgramming
 		private SettingsMonitoring _settings;
 		string _name;
         string _processName = "Совершенно точно не подозрительный процесс";
+		SettingsMonitoring _settingsMonitoring;
         public MainWindow()
 		{
-
 			MessageBoxResult messageBoxResult = MessageBox.Show("Данный комплекс программ отслеживает запущенные процессы и содержит кейлоггер. Продолжить использование продукта?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 			if (messageBoxResult == MessageBoxResult.No)
 				this.Close();
 
 			InitializeComponent();
 			SetSettings();
+
+			_settingsMonitoring = new SettingsMonitoring();
+			if(!_settingsMonitoring.LoadSettingsFromRegistry())
+			{
+				_settingsMonitoring.PathLogs = Directory.GetCurrentDirectory();
+
+                _settingsMonitoring.TimeBetweenLogging = 30;
+
+            }
 			_name = "Монитроринг рабочего времени";
 
             Process[] existingProcess = Process.GetProcessesByName(_processName);
@@ -99,8 +108,8 @@ namespace EkzSystemsProgramming
 		}
 		private void Start()
 		{
-			string logFilePath = "monitoring.log";
-			int saveIntervalSeconds = 5;
+			string logFilePath = Directory.GetCurrentDirectory();
+			double saveIntervalSeconds = _settingsMonitoring.TimeBetweenLogging;
 
             // Проверяем, запущен ли процесс
             Process[] existingProcess = Process.GetProcessesByName(_processName);
@@ -111,7 +120,7 @@ namespace EkzSystemsProgramming
 			ProcessStartInfo startInfo = new ProcessStartInfo
 			{
 				FileName = monitoringProcessPath,
-				Arguments = $"{logFilePath} {saveIntervalSeconds}",
+				Arguments = $"{logFilePath} {saveIntervalSeconds} {_settingsMonitoring.ProcessLogging} {_settingsMonitoring.KeyLogging}",
 				CreateNoWindow = true,
 				UseShellExecute = false
 			};
@@ -127,7 +136,7 @@ namespace EkzSystemsProgramming
 
 		private void Settings_Click(object sender, RoutedEventArgs e)
 		{
-			SettingsWindow settingsWindow = new SettingsWindow();
+			SettingsWindow settingsWindow = new SettingsWindow(_settingsMonitoring);
 			settingsWindow.Show();
 		}
 
@@ -184,7 +193,7 @@ namespace EkzSystemsProgramming
 			}
 		}
 
-		public void LoadSettingsFromRegistry()
+		public bool LoadSettingsFromRegistry()
 		{
 			ListNameCensurProcess = new List<string>();
 			ListKeyboardShortcut = new List<ForbiddenKeyCombination>();
@@ -223,7 +232,10 @@ namespace EkzSystemsProgramming
 							}
 						}
 					}
+					return true;
 				}
+				else
+					return false;
 			}
 		}
 	}

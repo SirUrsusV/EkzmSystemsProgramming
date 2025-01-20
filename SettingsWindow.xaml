@@ -34,7 +34,7 @@
                     <TextBlock Margin="5" FontSize="20" Grid.Row="3" HorizontalAlignment="Right" Text="Лоировать процессы: "/>
                     <TextBlock Margin="5" FontSize="20" Grid.Row="4" HorizontalAlignment="Right" Text="Лоировать нажатие клавиш: "/>
 
-                    <TextBox Margin="5" FontSize="20" Grid.Row="0" Grid.Column="1"/>
+                    <TextBox x:Name="LogPathTBox" TextChanged="LogPathTBox_TextChanged" Margin="5" FontSize="20" Grid.Row="0" Grid.Column="1"/>
 
                     <Grid Grid.Row="2" Grid.Column="1">
                         <Grid.ColumnDefinitions>
@@ -42,24 +42,22 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox Margin="5" FontSize="20" Grid.Row="2" Grid.Column="0" Width="50" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="TimeSaveTBox" TextChanged="LogPathTBox_TextChanged" Margin="5" FontSize="20" Grid.Row="2" Grid.Column="0" Width="50" HorizontalAlignment="Center"/>
                         <TextBlock Margin="5" FontSize="20" Grid.Row="2" Grid.Column="1" Width="60" Text="Минут" HorizontalAlignment="Center"/>
                     </Grid>
 
-                    <CheckBox VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" />
-                    <CheckBox VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" />
+                    <CheckBox x:Name="LogProcessCBox" Click="LogProcessCBox_Click" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" />
+                    <CheckBox x:Name="LogKeyCBox" Click="LogProcessCBox_Click" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" />
                 </Grid>
             </GroupBox>
 
             <GroupBox Grid.Row="1" Margin="5" Header="Настройки цензуры">
                 <StackPanel>
                     <Button FontSize="20" Content="Открыть список запрещённых процессов" Style="{StaticResource typeBt}" HorizontalAlignment="Left" Height="40" Width="500" Margin="10"/>
-                    <Button FontSize="20" Content="Открыть список запрещённых вводимых слов" Style="{StaticResource typeBt}" HorizontalAlignment="Left" Height="40" Width="500" Margin="10"/>
-
                 </StackPanel>
             </GroupBox>
 
-            <Button Grid.Row="4" Content="Потдвердить" Margin="10" Style="{StaticResource ResourceKey=typeBt}"/>
+            <Button x:Name="ConfirmBt" Click="Confirm_Click" Grid.Row="4" Content="Потдвердить" Margin="10" Style="{StaticResource ResourceKey=typeBt}"/>
         </Grid>
     </ScrollViewer>
 	
